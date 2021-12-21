@@ -55,3 +55,22 @@ header {
 .navigation a:hover::after {
   opacity: 1;
 }
+
+.currency_picker select {
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.header_btns {
+  display: flex;
+}
+
+.currency_picker {
+  margin-right: 22px;
+}
+
+.cart_modal {
+  align-self: center;
+}

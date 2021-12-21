@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import ROUTES from "../../constants/routes";
 import logo from "../../assets/images/logo.png";
+import empty_cart from "../../assets/images/empty_cart.png";
 import styles from "./Header.module.css";
 
 const CATEGORIES = `
@@ -62,6 +63,18 @@ class Header extends Component {
           <Link to={ROUTES.PAGE_PRODUCT_LISTING}>
             <img src={logo} alt="logo" />
           </Link>
+          <div className={styles.header_btns}>
+            <div className={styles.currency_picker}>
+              <select>
+                {this.state.currencies.map((currency) => (
+                  <option key={currency.label}>{currency.symbol}</option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.cart_modal}>
+              <img src={empty_cart} alt="cart" />
+            </div>
+          </div>
         </div>
       </header>
     );
