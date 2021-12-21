@@ -45,7 +45,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <header>
         <div className={styles.container}>
