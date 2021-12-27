@@ -22,6 +22,10 @@ main {
   flex-wrap: wrap;
 }
 
+.products_category_name {
+  text-transform: capitalize;
+}
+
 .product_card {
   display: flex;
   flex-direction: column;

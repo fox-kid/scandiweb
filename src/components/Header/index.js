@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import ROUTES from "../../constants/routes";
 import logo from "../../assets/images/logo.png";
 import empty_cart from "../../assets/images/empty_cart.png";
 import styles from "./Header.module.css";
@@ -59,7 +58,7 @@ class Header extends Component {
               ))}
             </ul>
           </nav>
-          <Link to={ROUTES.PAGE_PRODUCT_LISTING}>
+          <Link to="/listing/all">
             <img src={logo} alt="logo" />
           </Link>
           <div className={styles.header_btns}>
