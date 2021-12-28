@@ -5,6 +5,11 @@ import Cart from "../pages/Cart";
 
 export default [
   {
+    path: ROUTES.PAGE_DASHBOARD,
+    exact: true,
+    page: ProductListing,
+  },
+  {
     path: ROUTES.PAGE_PRODUCT_LISTING,
     exact: false,
     page: ProductListing,
@@ -14,5 +19,9 @@ export default [
     exact: false,
     page: ProductDescription,
   },
-  { path: ROUTES.CART, exact: false, page: Cart },
+  {
+    path: ROUTES.CART,
+    exact: false,
+    page: Cart,
+  },
 ];

@@ -1,7 +1,6 @@
 import { Component } from "react";
+import ProductCard from "../../components/ProductCard";
 import styles from "./ProductListing.module.css";
-
-let category = "all"; //default category
 
 class ProductListing extends Component {
   constructor(props) {
@@ -9,13 +8,18 @@ class ProductListing extends Component {
     this.state = {
       name: "",
       products: [],
+      loading: true,
+      error: false,
     };
   }
 
-  fetchItems() {
+  fetchProducts() {
+    // on start page sends request to category "all" by default
     const PRODUCTS_QUERY = `
         {
-          category(input: { title: "${category}" }){
+          category(input: { title: "${
+            this.props.match.params.category || "all"
+          }" }){
             name
               products {
               id
@@ -34,6 +38,7 @@ class ProductListing extends Component {
             }
           }
         }`;
+
     fetch(`http://localhost:4000/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,61 +47,40 @@ class ProductListing extends Component {
       .then((res) => res.json())
       .then((data) =>
         this.setState({
+          loading: false,
           name: data.data.category.name,
           products: data.data.category.products,
+          error: false,
         })
-      );
+      )
+      .catch((err) => this.setState({ loading: false, error: err.message }));
   }
 
   componentDidMount() {
-    this.fetchItems();
+    this.fetchProducts();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== window.location.pathname) {
-      category = window.location.pathname.substring(
-        window.location.pathname.lastIndexOf("/") + 1
-      );
-      this.fetchItems();
+    if (prevProps.match.params.category !== this.props.match.params.category) {
+      this.fetchProducts();
     }
   }
 
   render() {
     return (
       <main>
-        <div className={styles.container}>
+        <section className={styles.container}>
           <h1 className={styles.products_category_name}>{this.state.name}</h1>
-          <section className={styles.products_box}>
-            {this.state.products.map((product) => (
-              <div
-                key={product.id}
-                className={
-                  product.inStock
-                    ? styles.product_card
-                    : `${styles.product_card} ${styles.out_of_stock}`
-                }
-              >
-                <div className={styles.product_img}>
-                  <img src={product.gallery[0]} alt={product.name} />
-                </div>
-                <h4 className={styles.product_title}>
-                  {`${product.brand} ${product.name}`}
-                </h4>
-                {product.prices
-                  .filter((price) => price.currency.label === "USD")
-                  .map((filteredPrice) => (
-                    <p
-                      key={filteredPrice.amount}
-                      className={styles.pruduct_price}
-                    >
-                      {filteredPrice.currency.symbol}
-                      {filteredPrice.amount}
-                    </p>
-                  ))}
-              </div>
-            ))}
-          </section>
-        </div>
+          <div className={styles.products_box}>
+            {this.state.loading && <p>Content is loading. Please wait</p>}
+            {this.state.error && (
+              <p>There was some error. Please choose a category</p>
+            )}
+            {this.state.products && (
+              <ProductCard products={this.state.products} />
+            )}
+          </div>
+        </section>
       </main>
     );
   }
