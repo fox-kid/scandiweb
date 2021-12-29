@@ -7,7 +7,7 @@ class AttributesForm extends Component {
       <form>
         {this.props.values.map((attr) => (
           <div key={attr.name}>
-            <p>{attr.name}:</p>
+            <p className={styles.attribute_name}>{attr.name}:</p>
             <div className={styles.options_wrapper}>
               {attr.items.map((option) => (
                 <label key={option.id} htmlFor={option.id}>

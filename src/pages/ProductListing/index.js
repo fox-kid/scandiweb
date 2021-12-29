@@ -1,5 +1,6 @@
 import { Component } from "react";
 import ProductCard from "../../components/ProductCard";
+import { fetchProducts } from "../../api/products.js";
 import styles from "./ProductListing.module.css";
 
 class ProductListing extends Component {
@@ -13,38 +14,8 @@ class ProductListing extends Component {
     };
   }
 
-  fetchProducts() {
-    // on start page sends request to category "all" by default
-    const PRODUCTS_QUERY = `
-        {
-          category(input: { title: "${
-            this.props.match.params.category || "all"
-          }" }){
-            name
-              products {
-              id
-              name
-              inStock
-              gallery
-              category
-              brand
-              prices {
-                currency {
-                  label
-                  symbol
-                }
-                amount
-              }
-            }
-          }
-        }`;
-
-    fetch(`http://localhost:4000/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: PRODUCTS_QUERY }),
-    })
-      .then((res) => res.json())
+  fetchProductsFunction() {
+    fetchProducts(this.props.match.params.category)
       .then((data) =>
         this.setState({
           loading: false,
@@ -57,12 +28,12 @@ class ProductListing extends Component {
   }
 
   componentDidMount() {
-    this.fetchProducts();
+    this.fetchProductsFunction();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.category !== this.props.match.params.category) {
-      this.fetchProducts();
+      this.fetchProductsFunction();
     }
   }
 
