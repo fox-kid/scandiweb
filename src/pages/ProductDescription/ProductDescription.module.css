@@ -60,3 +60,20 @@
   font-size: 30px;
   margin-top: 0;
 }
+
+.attribute_options {
+  display: flex;
+}
+
+.option {
+  border: 1px solid #1d1f22;
+  width: 63px;
+  height: 45px;
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #292929;
+  cursor: pointer;
+}

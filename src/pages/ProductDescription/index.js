@@ -96,6 +96,33 @@ class ProductDescription extends Component {
             <div className={styles.product_description}>
               <h2 className={styles.product_brand}>{this.state.info.brand}</h2>
               <h3 className={styles.product_name}>{this.state.info.name}</h3>
+              <div className={styles.product_attributes}>
+                {this.state.info.attributes.length
+                  ? this.state.info.attributes.map((attr) => (
+                      <div key={attr.name} className={styles.attribute_box}>
+                        <p>{attr.name}:</p>
+                        <div className={styles.attribute_options}>
+                          {attr.items.length &&
+                            attr.items.map((option) => (
+                              <div
+                                key={option.id}
+                                className={styles.option}
+                                value={option.id}
+                                style={{
+                                  backgroundColor:
+                                    attr.type === "swatch"
+                                      ? `${option.value}`
+                                      : "#fffff",
+                                }}
+                              >
+                                {attr.type !== "swatch" && option.displayValue}
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    ))
+                  : null}
+              </div>
             </div>
           </div>
         )}
