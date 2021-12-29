@@ -1,4 +1,6 @@
 import { Component } from "react";
+import AttributesForm from "../../components/AttributesForm";
+import ProductImages from "../../components/ProductImages";
 import styles from "./ProductDescription.module.css";
 
 class ProductDescription extends Component {
@@ -6,10 +8,20 @@ class ProductDescription extends Component {
     super(props);
     this.state = {
       info: "",
-      chosenPickSrc: "",
+      chosenPicSrc: "",
       loading: true,
       error: false,
     };
+    this.updateOptions = this.updateOptions.bind(this);
+    this.choosePictureSource = this.choosePictureSource.bind(this);
+  }
+
+  updateOptions(chosenOptions) {
+    this.setState(chosenOptions);
+  }
+
+  choosePictureSource(src) {
+    this.setState(src);
   }
 
   fetchProductInfo() {
@@ -59,7 +71,7 @@ class ProductDescription extends Component {
   }
 
   render() {
-    console.log(this.state.info);
+    console.log(this.state);
     return (
       <section className={styles.container}>
         {this.state.loading && <p>Content is loading. Please wait</p>}
@@ -69,12 +81,17 @@ class ProductDescription extends Component {
         {this.state.info && (
           <div className={styles.product_info_box}>
             <div className={styles.product_images}>
-              <div className={styles.product_images_carousel}>
+              <ProductImages
+                values={this.state.info.gallery}
+                chosenPicSrc={this.state.chosenPicSrc}
+                choosePic={this.choosePictureSource}
+              />
+              {/* <div className={styles.product_images_carousel}>
                 {this.state.info.gallery.map((image) => (
                   <div
                     key={image}
                     className={styles.carousel_image}
-                    onClick={() => this.setState({ chosenPickSrc: image })}
+                    onClick={() => this.setState({ chosenPicSrc: image })}
                     role="presentation"
                     onKeyDown={this.handleKeyDown}
                   >
@@ -91,37 +108,18 @@ class ProductDescription extends Component {
                   }
                   alt={`${this.state.info.name}`}
                 />
-              </div>
+              </div> */}
             </div>
             <div className={styles.product_description}>
               <h2 className={styles.product_brand}>{this.state.info.brand}</h2>
               <h3 className={styles.product_name}>{this.state.info.name}</h3>
               <div className={styles.product_attributes}>
-                {this.state.info.attributes.length
-                  ? this.state.info.attributes.map((attr) => (
-                      <div key={attr.name} className={styles.attribute_box}>
-                        <p>{attr.name}:</p>
-                        <div className={styles.attribute_options}>
-                          {attr.items.length &&
-                            attr.items.map((option) => (
-                              <div
-                                key={option.id}
-                                className={styles.option}
-                                value={option.id}
-                                style={{
-                                  backgroundColor:
-                                    attr.type === "swatch"
-                                      ? `${option.value}`
-                                      : "#fffff",
-                                }}
-                              >
-                                {attr.type !== "swatch" && option.displayValue}
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    ))
-                  : null}
+                {this.state.info.attributes.length ? (
+                  <AttributesForm
+                    values={this.state.info.attributes}
+                    updateSelectedOptions={this.updateOptions}
+                  />
+                ) : null}
               </div>
             </div>
           </div>
