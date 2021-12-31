@@ -13,33 +13,27 @@ class Routes extends Component {
   }
 
   addToCart(props) {
+    const product = props.info;
     const addedProduct = this.state.cartProducts.find(
-      (item) => item.id === props.info.id
+      (item) => item.id === product.id
     );
 
-    console.log(addedProduct);
     addedProduct
-      ? {
-          cartProducts: this.state.cartProducts.map((item) => {
-            item.id === props.info.id
-              ? {
-                  ...this.state.cartProducts.item,
-                  quantity: item.quantity + 1,
-                }
-              : item;
-          }),
-        }
+      ? this.state.cartProducts.map((item) => {
+          item.id === product.id
+            ? { ...item, quantity: item.quantity++ }
+            : item;
+        })
       : this.setState({
           cartProducts: [
             ...this.state.cartProducts,
-            { ...props.info, quantity: 1 },
+            { ...product, quantity: 1 },
           ],
         });
+    console.log(props);
   }
 
   render() {
-    console.log(this.state.cartProducts);
-
     return (
       <>
         <Header

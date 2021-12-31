@@ -12,13 +12,20 @@ class ProductDescription extends Component {
       chosenPicSrc: "",
       loading: true,
       error: false,
+      attributes: [],
     };
     this.updateOptions = this.updateOptions.bind(this);
     this.choosePictureSource = this.choosePictureSource.bind(this);
   }
 
-  updateOptions(chosenOptions) {
-    this.setState(chosenOptions);
+  updateOptions(attrName, attrValue) {
+    // eslint-disable-next-line no-unused-vars
+    const addedAttr = this.state.attributes.find((item) =>
+      console.log(item.name, attrName)
+    );
+
+    // this.state.attributes.map(())
+    console.log(attrName, attrValue);
   }
 
   choosePictureSource(src) {
@@ -32,6 +39,7 @@ class ProductDescription extends Component {
           loading: false,
           info: data.data.product,
           error: false,
+          attributes: [],
         });
       })
       .catch((err) => this.setState({ loading: false, error: err.message }));

@@ -18,9 +18,10 @@ class AttributesForm extends Component {
                     value={option.id}
                     style={{ display: "none" }}
                     onClick={(e) =>
-                      this.props.updateSelectedOptions({
-                        [e.target.name]: e.target.value,
-                      })
+                      this.props.updateSelectedOptions(
+                        [e.target.name],
+                        e.target.value
+                      )
                     }
                   />
                   <div

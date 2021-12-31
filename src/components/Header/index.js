@@ -4,21 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import empty_cart from "../../assets/images/empty_cart.png";
 import styles from "./Header.module.css";
-
-const CATEGORIES = `
-{
-  categories {
-    name
-  }
-}`;
-
-const CURRENCIES = `
-{
-  currencies {
-    label
-    symbol
-  }
-}`;
+import { fetchCategories, fetchCurrencies } from "../../api/products.js";
 
 class Header extends Component {
   constructor(props) {
@@ -27,20 +13,12 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:4000/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: CATEGORIES }),
-    })
-      .then((res) => res.json())
-      .then((data) => this.setState({ categories: data.data.categories }));
-    fetch(`http://localhost:4000/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: CURRENCIES }),
-    })
-      .then((res) => res.json())
-      .then((data) => this.setState({ currencies: data.data.currencies }));
+    fetchCategories().then((data) =>
+      this.setState({ categories: data.data.categories })
+    );
+    fetchCurrencies().then((data) =>
+      this.setState({ currencies: data.data.currencies })
+    );
   }
 
   render() {
@@ -69,9 +47,9 @@ class Header extends Component {
                 ))}
               </select>
             </div>
-            <div className={styles.cart_modal}>
+            <Link to="/cart" className={styles.cart_modal}>
               <img src={empty_cart} alt="cart" />
-            </div>
+            </Link>
           </div>
         </div>
       </header>

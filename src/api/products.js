@@ -1,3 +1,38 @@
+function fetchCategories() {
+  const CATEGORIES = `
+  {
+    categories {
+      name
+    }
+  }`;
+
+  const response = fetch(`http://localhost:4000/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: CATEGORIES }),
+  }).then((res) => res.json());
+
+  return response;
+}
+
+function fetchCurrencies() {
+  const CURRENCIES = `
+{
+  currencies {
+    label
+    symbol
+  }
+}`;
+
+  const response = fetch(`http://localhost:4000/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: CURRENCIES }),
+  }).then((res) => res.json());
+
+  return response;
+}
+
 function fetchProducts(props) {
   // on start page sends request to category "all" by default
   const PRODUCTS_QUERY = `
@@ -69,4 +104,4 @@ function fetchProductInfo(props) {
   return response;
 }
 
-export { fetchProductInfo, fetchProducts };
+export { fetchCategories, fetchCurrencies, fetchProductInfo, fetchProducts };
