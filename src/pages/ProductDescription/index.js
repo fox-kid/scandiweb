@@ -38,7 +38,6 @@ class ProductDescription extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <section className={styles.container}>
         {this.state.loading && <p>Content is loading. Please wait</p>}
@@ -65,6 +64,31 @@ class ProductDescription extends Component {
                   />
                 ) : null}
               </div>
+
+              <div className={styles.product_price}>
+                Price:
+                {this.state.info.prices
+                  .filter((price) => price.currency.label === "USD")
+                  .map((filteredPrice, index) => (
+                    <span key={index} className={styles.price_amount}>
+                      {filteredPrice.currency.symbol}
+                      {filteredPrice.amount}
+                    </span>
+                  ))}
+              </div>
+              <button
+                className={styles.btn_primary}
+                type="submit"
+                onClick={() => this.props.addToCart(this.state)}
+              >
+                Add to cart
+              </button>
+              <div
+                className={styles.product_description}
+                dangerouslySetInnerHTML={{
+                  __html: this.state.info.description,
+                }}
+              ></div>
             </div>
           </div>
         )}

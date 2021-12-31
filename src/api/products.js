@@ -52,6 +52,10 @@ function fetchProductInfo(props) {
             }
             brand
             prices {
+              currency {
+                label
+                symbol
+              }
               amount
             }
           }

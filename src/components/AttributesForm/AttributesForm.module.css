@@ -4,6 +4,9 @@
 
 .attribute_name {
   font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .option {

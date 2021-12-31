@@ -22,8 +22,8 @@ class ProductCard extends Component {
         </h4>
         {product.prices
           .filter((price) => price.currency.label === "USD")
-          .map((filteredPrice) => (
-            <p key={filteredPrice.amount} className={styles.pruduct_price}>
+          .map((filteredPrice, index) => (
+            <p key={index} className={styles.product_price}>
               {filteredPrice.currency.symbol}
               {filteredPrice.amount}
             </p>
