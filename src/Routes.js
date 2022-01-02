@@ -17,20 +17,21 @@ class Routes extends Component {
     const addedProduct = this.state.cartProducts.find(
       (item) => item.id === product.id
     );
-
     addedProduct
       ? this.state.cartProducts.map((item) => {
           item.id === product.id
-            ? { ...item, quantity: item.quantity++ }
+            ? {
+                ...item,
+                quantity: item.quantity++,
+              }
             : item;
         })
       : this.setState({
           cartProducts: [
             ...this.state.cartProducts,
-            { ...product, quantity: 1 },
+            { ...product, quantity: 1, attributes: props.attributes },
           ],
         });
-    console.log(props);
   }
 
   render() {

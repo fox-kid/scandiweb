@@ -3,6 +3,7 @@ import styles from "./AttributesForm.module.css";
 
 class AttributesForm extends Component {
   render() {
+    console.log(this.props.values);
     return (
       <form>
         {this.props.values.map((attr) => (
@@ -19,8 +20,10 @@ class AttributesForm extends Component {
                     style={{ display: "none" }}
                     onClick={(e) =>
                       this.props.updateSelectedOptions(
-                        [e.target.name],
-                        e.target.value
+                        e.target.name,
+                        e.target.value,
+                        attr.type,
+                        option.value
                       )
                     }
                   />
@@ -29,7 +32,7 @@ class AttributesForm extends Component {
                     value={option.id}
                     style={{
                       backgroundColor:
-                        attr.type === "swatch" ? `${option.value}` : "#fffff",
+                        attr.type === "swatch" ? `${option.value}` : "none",
                     }}
                   >
                     {attr.type !== "swatch" && option.displayValue}

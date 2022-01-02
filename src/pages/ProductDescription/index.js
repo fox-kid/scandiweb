@@ -18,14 +18,27 @@ class ProductDescription extends Component {
     this.choosePictureSource = this.choosePictureSource.bind(this);
   }
 
-  updateOptions(attrName, attrValue) {
-    // eslint-disable-next-line no-unused-vars
-    const addedAttr = this.state.attributes.find((item) =>
-      console.log(item.name, attrName)
+  updateOptions(attrName, attrDisplayValue, attrType, attrValue) {
+    console.log(attrName, attrDisplayValue, attrType, attrValue);
+    const addedAttr = this.state.attributes.find(
+      (item) => item.name === attrName
     );
 
-    // this.state.attributes.map(())
-    console.log(attrName, attrValue);
+    addedAttr
+      ? this.state.attributes.map((item) =>
+          item.name === attrName ? { ...item, name: attrDisplayValue } : item
+        )
+      : this.setState({
+          attributes: [
+            ...this.state.attributes,
+            {
+              name: attrName,
+              displayValue: attrDisplayValue,
+              type: attrType,
+              value: attrValue,
+            },
+          ],
+        });
   }
 
   choosePictureSource(src) {

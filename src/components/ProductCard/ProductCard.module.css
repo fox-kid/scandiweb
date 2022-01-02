@@ -54,6 +54,7 @@
 .out_of_stock {
   color: #8d8f9a;
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .product_card.out_of_stock:hover {
