@@ -9,10 +9,10 @@ class AttributesForm extends Component {
           <div key={attr.name}>
             <p className={styles.attribute_name}>{attr.name}:</p>
             <div className={styles.options_wrapper}>
-              {attr.items.map((option, index) => (
+              {attr.items.map((option) => (
                 <label
                   key={option.id}
-                  htmlFor={(attr.name + index)
+                  htmlFor={(attr.name + option.id) // Because it would find attribute with option ID yes/no and had a bug
                     .split(" ")
                     .join("_")
                     .toLowerCase()}
@@ -21,7 +21,10 @@ class AttributesForm extends Component {
                   <input
                     type="radio"
                     name={attr.name}
-                    id={(attr.name + index).split(" ").join("_").toLowerCase()}
+                    id={(attr.name + option.id)
+                      .split(" ")
+                      .join("_")
+                      .toLowerCase()}
                     value={option.id}
                     style={{ display: "none" }}
                     onClick={(e) =>
