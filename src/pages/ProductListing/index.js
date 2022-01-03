@@ -48,7 +48,10 @@ class ProductListing extends Component {
               <p>There was some error. Please choose a category</p>
             )}
             {this.state.products && (
-              <ProductCard products={this.state.products} />
+              <ProductCard
+                products={this.state.products}
+                currency={this.props.currency}
+              />
             )}
           </div>
         </section>

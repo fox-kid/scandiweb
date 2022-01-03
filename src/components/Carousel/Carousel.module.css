@@ -1,0 +1,29 @@
+.carousel_wrapper {
+  position: relative;
+}
+
+.btn_arrow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(193 190 190 / 16%);
+}
+
+.right_arrow {
+  top: 0;
+  right: 0;
+}
+
+.carousel_content {
+  height: auto;
+  width: 141px;
+  display: flex;
+}
+
+.carousel_content img {
+  height: 100%;
+  width: 100%;
+}

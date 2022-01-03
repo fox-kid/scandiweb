@@ -8,8 +8,15 @@ class Routes extends Component {
     super(props);
     this.state = {
       cartProducts: [],
+      currency: "$",
     };
+    this.changeCurrency = this.changeCurrency.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.subtractQuantity = this.subtractQuantity.bind(this);
+  }
+
+  changeCurrency(label) {
+    this.setState({ currency: label });
   }
 
   addToCart(props) {
@@ -17,6 +24,7 @@ class Routes extends Component {
     const addedProduct = this.state.cartProducts.find(
       (item) => item.id === product.id
     );
+
     addedProduct
       ? this.state.cartProducts.map((item) => {
           item.id === product.id
@@ -34,12 +42,32 @@ class Routes extends Component {
         });
   }
 
+  subtractQuantity(product) {
+    this.state.cartProducts.length &&
+      this.state.cartProducts.map((item) => {
+        item.id === product.id
+          ? {
+              ...item,
+              quantity: item.quantity--,
+            }
+          : item;
+      });
+    const updatedCart =
+      this.state.cartProducts.length &&
+      this.state.cartProducts.filter((item) =>
+        item.quantity > 0 ? item : null
+      );
+    this.state.cartProducts.length &&
+      this.setState({ ...this.state.cartProducts, cartProducts: updatedCart });
+  }
+
   render() {
     return (
       <>
         <Header
           cartProducts={this.state.cartProducts}
           addToCart={this.addToCart}
+          changeCurrency={this.changeCurrency}
         />
         <Switch>
           {ROUTES_CONFIG.map((route, index) => {
@@ -54,7 +82,9 @@ class Routes extends Component {
                   <Page
                     {...props}
                     cartProducts={this.state.cartProducts}
+                    currency={this.state.currency}
                     addToCart={this.addToCart}
+                    subtractQuantity={this.subtractQuantity}
                   />
                 )}
               />

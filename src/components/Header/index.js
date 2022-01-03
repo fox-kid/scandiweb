@@ -41,7 +41,9 @@ class Header extends Component {
           </Link>
           <div className={styles.header_btns}>
             <div className={styles.currency_picker}>
-              <select>
+              <select
+                onChange={(e) => this.props.changeCurrency(e.target.value)}
+              >
                 {this.state.currencies.map((currency) => (
                   <option key={currency.label}>{currency.symbol}</option>
                 ))}

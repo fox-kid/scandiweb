@@ -21,7 +21,7 @@ class ProductCard extends Component {
           {`${product.brand} ${product.name}`}
         </h4>
         {product.prices
-          .filter((price) => price.currency.label === "USD")
+          .filter((price) => price.currency.symbol === this.props.currency)
           .map((filteredPrice, index) => (
             <p key={index} className={styles.product_price}>
               {filteredPrice.currency.symbol}

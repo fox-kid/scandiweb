@@ -19,7 +19,6 @@ class ProductDescription extends Component {
   }
 
   updateOptions(attrName, attrDisplayValue, attrType, attrValue) {
-    console.log(attrName, attrDisplayValue, attrType, attrValue);
     const addedAttr = this.state.attributes.find(
       (item) => item.name === attrName
     );
@@ -89,7 +88,9 @@ class ProductDescription extends Component {
               <div className={styles.product_price}>
                 Price:
                 {this.state.info.prices
-                  .filter((price) => price.currency.label === "USD")
+                  .filter(
+                    (price) => price.currency.symbol === this.props.currency
+                  )
                   .map((filteredPrice, index) => (
                     <span key={index} className={styles.price_amount}>
                       {filteredPrice.currency.symbol}
