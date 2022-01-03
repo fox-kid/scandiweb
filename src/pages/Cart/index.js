@@ -8,6 +8,7 @@ class Cart extends Component {
       cart: this.props.cartProducts,
     };
   }
+
   // addQuantity() {
   //   console.log("add");
   // }
