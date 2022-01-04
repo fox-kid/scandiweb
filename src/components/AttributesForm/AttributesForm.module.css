@@ -25,3 +25,12 @@
 .option_box {
   margin-bottom: 10px;
 }
+
+.picked {
+  background-color: #292929;
+}
+
+.attributes_form {
+  position: relative;
+}
+

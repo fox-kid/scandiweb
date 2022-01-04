@@ -13,35 +13,46 @@ class ProductDescription extends Component {
       loading: true,
       error: false,
       attributes: [],
+      choseAllAttributes: true,
+      submitted: false,
     };
     this.updateOptions = this.updateOptions.bind(this);
     this.choosePictureSource = this.choosePictureSource.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
-  updateOptions(attrName, attrDisplayValue, attrType, attrValue) {
+  updateOptions(props) {
     const addedAttr = this.state.attributes.find(
-      (item) => item.name === attrName
+      (item) => item.name === props.name
     );
 
+    let attributes = [...this.state.attributes];
+    let index = attributes.findIndex((attr) => attr.name === props.name);
+    attributes[index] = {
+      ...attributes[index],
+      value: props.value,
+      displayValue: props.displayValue,
+    };
+
     addedAttr
-      ? this.state.attributes.map((item) =>
-          item.name === attrName ? { ...item, name: attrDisplayValue } : item
-        )
-      : this.setState({
-          attributes: [
-            ...this.state.attributes,
-            {
-              name: attrName,
-              displayValue: attrDisplayValue,
-              type: attrType,
-              value: attrValue,
-            },
-          ],
-        });
+      ? this.setState({ attributes })
+      : this.setState((prevState) => ({
+          attributes: [...prevState.attributes, props],
+        }));
   }
 
   choosePictureSource(src) {
     this.setState(src);
+  }
+
+  handleAddToCart(state) {
+    let shouldExistAttr = state.info.attributes;
+    if (shouldExistAttr.length === state.attributes.length) {
+      this.setState({ choseAllAttributes: true, submitted: true });
+      this.props.addToCart(state);
+    } else {
+      this.setState({ choseAllAttributes: false });
+    }
   }
 
   componentDidMount() {
@@ -51,7 +62,6 @@ class ProductDescription extends Component {
           loading: false,
           info: data.data.product,
           error: false,
-          attributes: [],
         });
       })
       .catch((err) => this.setState({ loading: false, error: err.message }));
@@ -81,6 +91,7 @@ class ProductDescription extends Component {
                   <AttributesForm
                     values={this.state.info.attributes}
                     updateSelectedOptions={this.updateOptions}
+                    attributes={this.state.attributes}
                   />
                 ) : null}
               </div>
@@ -98,13 +109,27 @@ class ProductDescription extends Component {
                     </span>
                   ))}
               </div>
-              <button
-                className={styles.btn_primary}
-                type="submit"
-                onClick={() => this.props.addToCart(this.state)}
-              >
-                Add to cart
-              </button>
+              <div className={styles.submit_wrapper}>
+                {!this.state.choseAllAttributes && (
+                  <p className={`${styles.submit_text} ${styles.submit_error}`}>
+                    *Please choose your options for all the attributes.
+                  </p>
+                )}
+                {this.state.submitted && (
+                  <p
+                    className={`${styles.submit_text} ${styles.submit_success}`}
+                  >
+                    Item was added to your cart.
+                  </p>
+                )}
+                <button
+                  className={styles.btn_primary}
+                  type="submit"
+                  onClick={() => this.handleAddToCart(this.state)}
+                >
+                  Add to cart
+                </button>
+              </div>
               <div
                 className={styles.product_description}
                 dangerouslySetInnerHTML={{

@@ -52,13 +52,18 @@ class Routes extends Component {
             }
           : item;
       });
+
     const updatedCart =
       this.state.cartProducts.length &&
       this.state.cartProducts.filter((item) =>
         item.quantity > 0 ? item : null
       );
+
     this.state.cartProducts.length &&
-      this.setState({ ...this.state.cartProducts, cartProducts: updatedCart });
+      this.setState((prevState) => ({
+        ...prevState.cartProducts,
+        cartProducts: updatedCart,
+      }));
   }
 
   render() {

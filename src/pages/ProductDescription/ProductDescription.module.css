@@ -82,3 +82,24 @@
   font-size: 16px;
   line-height: 26px;
 }
+
+.submit_wrapper {
+  position: relative;
+}
+
+.submit_text {
+  position: absolute;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 50px;
+}
+
+.submit_error {
+  color: #9d2c2c;
+}
+
+.submit_success {
+  color: #103e10;
+}
