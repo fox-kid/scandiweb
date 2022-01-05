@@ -27,3 +27,11 @@
   height: 100%;
   width: 100%;
 }
+
+.modal_cart .carousel_content {
+  width: 90px;
+}
+
+.modal_cart .btn_arrow {
+  display: none;
+}

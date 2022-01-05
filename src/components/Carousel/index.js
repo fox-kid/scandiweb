@@ -27,7 +27,11 @@ class Carousel extends Component {
 
   render() {
     return (
-      <div className={styles.carousel_wrapper}>
+      <div
+        className={`${styles.carousel_wrapper} ${
+          this.props.showModal && styles.modal_cart
+        }`}
+      >
         <button
           className={`${styles.btn_arrow} ${styles.left_arrow}`}
           onClick={() => this.decrementIndex()}

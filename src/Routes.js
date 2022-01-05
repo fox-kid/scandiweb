@@ -12,6 +12,7 @@ class Routes extends Component {
     };
     this.changeCurrency = this.changeCurrency.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.addQuantity = this.addQuantity.bind(this);
     this.subtractQuantity = this.subtractQuantity.bind(this);
   }
 
@@ -40,6 +41,18 @@ class Routes extends Component {
             { ...product, quantity: 1, attributes: props.attributes },
           ],
         });
+  }
+
+  addQuantity(product) {
+    this.state.cartProducts.map((item) => {
+      item.id === product.id
+        ? {
+            ...item,
+            quantity: item.quantity++,
+          }
+        : item;
+    });
+    this.forceUpdate(); // Needed because the quantity display wouldn't update
   }
 
   subtractQuantity(product) {
@@ -71,8 +84,12 @@ class Routes extends Component {
       <>
         <Header
           cartProducts={this.state.cartProducts}
+          currency={this.state.currency}
           addToCart={this.addToCart}
           changeCurrency={this.changeCurrency}
+          addQuantity={this.addQuantity}
+          subtractQuantity={this.subtractQuantity}
+          totalPrice={this.state.total}
         />
         <Switch>
           {ROUTES_CONFIG.map((route, index) => {
@@ -89,6 +106,7 @@ class Routes extends Component {
                     cartProducts={this.state.cartProducts}
                     currency={this.state.currency}
                     addToCart={this.addToCart}
+                    addQuantity={this.addQuantity}
                     subtractQuantity={this.subtractQuantity}
                   />
                 )}

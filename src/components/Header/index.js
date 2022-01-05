@@ -5,11 +5,25 @@ import logo from "../../assets/images/logo.png";
 import empty_cart from "../../assets/images/empty_cart.png";
 import styles from "./Header.module.css";
 import { fetchCategories, fetchCurrencies } from "../../api/products.js";
+import Modal from "../Modal";
+import Cart from "../../pages/Cart";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { categories: [], currencies: [] };
+    this.state = {
+      categories: [],
+      currencies: [],
+      showModal: false,
+    };
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal,
+      total: 0,
+    });
   }
 
   componentDidMount() {
@@ -22,6 +36,10 @@ class Header extends Component {
   }
 
   render() {
+    const amount = this.props.cartProducts.reduce(
+      (previousValue, currentValue) => previousValue + currentValue.quantity,
+      0
+    );
     return (
       <header>
         <div className={styles.container}>
@@ -49,10 +67,48 @@ class Header extends Component {
                 ))}
               </select>
             </div>
-            <Link to="/cart" className={styles.cart_modal}>
+            <button
+              className={styles.show_modal_btn}
+              onClick={this.toggleModal}
+            >
               <img src={empty_cart} alt="cart" />
-            </Link>
+            </button>
           </div>
+          {this.state.showModal && (
+            <Modal>
+              <div className={styles.modal_cart}>
+                <div className={styles.modal_header}>
+                  My Bag,
+                  <span className={styles.items_quantity}>{amount}items</span>
+                </div>
+                <div className={styles.modal_cart_content}>
+                  <Cart
+                    cartProducts={this.props.cartProducts}
+                    currency={this.props.currency}
+                    showModal={this.state.showModal}
+                    addQuantity={this.props.addQuantity}
+                    subtractQuantity={this.props.subtractQuantity}
+                  />
+                </div>
+                <div className={styles.modal_buttons}>
+                  <Link
+                    to="/cart"
+                    className={styles.cart_btn}
+                    onClick={this.toggleModal}
+                  >
+                    View Bag
+                  </Link>
+                  <Link
+                    to="/fake_link"
+                    className={styles.checkout_btn}
+                    onClick={this.toggleModal}
+                  >
+                    Check Out
+                  </Link>
+                </div>
+              </div>
+            </Modal>
+          )}
         </div>
       </header>
     );

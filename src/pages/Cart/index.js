@@ -7,29 +7,43 @@ import Carousel from "../../components/Carousel";
 class Cart extends Component {
   constructor(props) {
     super(props);
-    this.state = { imgIndex: 0 };
-    this.addQuantity = this.addQuantity.bind(this);
-  }
-
-  addQuantity(product) {
-    this.props.cartProducts.map((item) => {
-      item.id === product.id
-        ? {
-            ...item,
-            quantity: item.quantity++,
-          }
-        : item;
-    });
-    this.forceUpdate(); // Needed because the quantity display wouldn't update
+    this.state = {
+      imgIndex: 0,
+    };
   }
 
   // Subtracting is in the component above because it was better to update the state there
 
   render() {
+    const totalPrice = this.props.cartProducts.reduce(
+      (previousValue, currentValue) => {
+        const amount =
+          previousValue +
+          currentValue.quantity *
+            currentValue.prices.filter(
+              (price) => price.currency.symbol === this.props.currency
+            )[0].amount;
+
+        return amount;
+      },
+      0
+    );
+    console.log(this.props);
     return (
-      <div className={styles.container}>
-        <span className={styles.cart_title}>Cart</span>
-        <div className={styles.cart_wrapper}>
+      <div
+        className={`${styles.container} ${
+          this.props.showModal && styles.modal_cart
+        }`}
+        style={{ marginTop: this.props.showModal ? "0px" : "160px" }}
+      >
+        {this.props.totalPrice}
+        {!this.props.showModal && (
+          <span className={styles.cart_title}>Cart</span>
+        )}
+        <div
+          className={styles.cart_wrapper}
+          style={{ marginTop: this.props.showModal ? "0px" : "160px" }}
+        >
           {!this.props.cartProducts.length ? <p>The cart is empty</p> : null}
           {this.props.cartProducts.map((item, index) => (
             <div key={index} className={styles.cart_product}>
@@ -70,7 +84,7 @@ class Cart extends Component {
                   <div className={styles.quantity_editor_box}>
                     <button
                       className={styles.btn_calculator}
-                      onClick={() => this.addQuantity(item)}
+                      onClick={() => this.props.addQuantity(item)}
                     >
                       <img src={plus_square} alt="plus_button" />
                     </button>
@@ -83,11 +97,23 @@ class Cart extends Component {
                     </button>
                   </div>
                 </div>
-                <Carousel images={item.gallery} />
+                <Carousel
+                  images={item.gallery}
+                  showModal={this.props.showModal}
+                />
               </div>
             </div>
           ))}
         </div>
+        {this.props.showModal && (
+          <div className={styles.total_price}>
+            Total:
+            <span className={styles.total_price_amount}>
+              {this.props.currency}
+              {totalPrice}
+            </span>
+          </div>
+        )}
       </div>
     );
   }

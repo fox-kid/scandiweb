@@ -71,6 +71,53 @@ header {
   margin-right: 22px;
 }
 
-.cart_modal {
+.show_modal_btn {
   align-self: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal_cart {
+  background-color: #ffffff;
+  height: fit-content;
+  padding: 8px 16px;
+  margin: 0 30px;
+  width: 325px;
+}
+
+.modal_header {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 23px;
+}
+
+.items_quantity {
+  font-weight: 300;
+  margin-left: 4px;
+}
+
+.modal_buttons {
+  margin: 20px 0;
+  text-transform: uppercase;
+  display: flex;
+  text-align: center;
+}
+
+.modal_buttons a {
+  text-decoration: none;
+  width: 140px;
+  padding: 10px;
+}
+
+.cart_btn {
+  border: 1px solid #1d1f22;
+  cursor: pointer;
+  color: #1d1f22;
+  margin-right: 12px;
+}
+
+.checkout_btn {
+  background-color: #5ece7b;
+  color: #ffffff;
 }
