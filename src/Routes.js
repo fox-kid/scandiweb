@@ -4,11 +4,13 @@ import NotFound from "./components/NotFound";
 import { Route, Switch } from "react-router-dom";
 import ROUTES_CONFIG from "./config/routes";
 
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+
 class Routes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartProducts: [],
+      cartProducts: cartFromLocalStorage,
       currency: "$",
     };
     this.changeCurrency = this.changeCurrency.bind(this);
@@ -42,6 +44,8 @@ class Routes extends Component {
             { ...product, quantity: 1, attributes: props.attributes },
           ],
         });
+
+    localStorage.setItem("cart", JSON.stringify(this.state.cartProducts));
   }
 
   addQuantity(product) {
@@ -78,6 +82,8 @@ class Routes extends Component {
         ...prevState.cartProducts,
         cartProducts: updatedCart,
       }));
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   }
 
   render() {

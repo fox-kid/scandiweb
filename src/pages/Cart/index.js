@@ -26,7 +26,7 @@ class Cart extends Component {
               (price) => price.currency.symbol === this.props.currency
             )[0].amount;
 
-        return amount.toFixed(2);
+        return amount;
       },
       0
     );
