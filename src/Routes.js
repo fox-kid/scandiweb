@@ -5,13 +5,14 @@ import { Route, Switch } from "react-router-dom";
 import ROUTES_CONFIG from "./config/routes";
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+const currencyFromLocalStorage = JSON.parse(localStorage.getItem("currency"));
 
 class Routes extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cartProducts: cartFromLocalStorage,
-      currency: "$",
+      currency: currencyFromLocalStorage || "$",
     };
     this.changeCurrency = this.changeCurrency.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -21,6 +22,7 @@ class Routes extends Component {
 
   changeCurrency(label) {
     this.setState({ currency: label });
+    localStorage.setItem("currency", JSON.stringify(label));
   }
 
   addToCart(props) {

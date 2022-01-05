@@ -63,7 +63,12 @@ class Header extends Component {
                 onChange={(e) => this.props.changeCurrency(e.target.value)}
               >
                 {this.state.currencies.map((currency) => (
-                  <option key={currency.label}>{currency.symbol}</option>
+                  <option
+                    key={currency.label}
+                    selected={currency.symbol === this.props.currency}
+                  >
+                    {currency.symbol}
+                  </option>
                 ))}
               </select>
             </div>
