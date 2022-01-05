@@ -76,7 +76,7 @@ class Cart extends Component {
                             attr.type === "swatch" ? `${attr.value}` : "none",
                         }}
                       >
-                        {attr.type !== "swatch" && attr.displayValue}
+                        {attr.type !== "swatch" && attr.value}
                       </div>
                     ))}
                   </div>

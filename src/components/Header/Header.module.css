@@ -131,6 +131,10 @@ header {
   margin-left: 4px;
 }
 
+.items_quantity_amount {
+  margin-right: 4px;
+}
+
 .modal_buttons {
   margin: 20px 0;
   text-transform: uppercase;

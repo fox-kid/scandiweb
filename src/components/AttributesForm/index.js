@@ -50,7 +50,7 @@ class AttributesForm extends Component {
                         attr.type === "swatch" ? `${option.value}` : "none",
                     }}
                   >
-                    {attr.type !== "swatch" && option.displayValue}
+                    {attr.type !== "swatch" && option.value}
                   </div>
                 </label>
               ))}

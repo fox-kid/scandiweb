@@ -84,7 +84,12 @@ class Header extends Component {
               <div className={styles.modal_cart}>
                 <div className={styles.modal_header}>
                   My Bag,
-                  <span className={styles.items_quantity}>{amount}items</span>
+                  <span className={styles.items_quantity}>
+                    <span className={styles.items_quantity_amount}>
+                      {amount}
+                    </span>
+                    items
+                  </span>
                 </div>
                 <div className={styles.modal_cart_content}>
                   <Cart
