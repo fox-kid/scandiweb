@@ -24,12 +24,14 @@
   margin: 0;
   font-weight: 300;
   font-size: 18px;
+  font-family: "Raleway", sans-serif;
 }
 
 .product_price {
   width: fit-content;
   font-weight: 500;
   font-size: 18px;
+  font-family: "Raleway", sans-serif;
 }
 
 .product_card:hover {

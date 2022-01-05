@@ -24,6 +24,7 @@
   font-size: 30px;
   margin-top: 0;
   margin-bottom: 16px;
+  font-family: "Raleway", sans-serif;
 }
 
 .product_name {
@@ -31,6 +32,7 @@
   font-size: 30px;
   margin-top: 0;
   margin-bottom: 43px;
+  font-family: "Raleway", sans-serif;
 }
 
 .product_attributes {
@@ -44,27 +46,31 @@
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 20px;
+  font-family: "Raleway", sans-serif;
 }
 
 .price_amount {
   font-size: 24px;
   margin: 10px 0;
   padding: 10px 0;
+  font-family: "Raleway", sans-serif;
 }
 
 .btn_primary {
   border: none;
+  text-transform: uppercase;
   background-color: #5ece7b;
   color: #ffffff;
   font-weight: 600;
   font-size: 16px;
-  padding: 16px 94px;
+  padding: 16px 0;
   margin-bottom: 40px;
   width: 292px;
   display: flex;
   justify-content: center;
   cursor: pointer;
   transition: 0.2s all;
+  font-family: "Raleway", sans-serif;
 }
 
 .btn_primary:hover {
@@ -81,6 +87,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
+  font-family: "Roboto", sans-serif;
 }
 
 .submit_wrapper {
@@ -94,6 +101,7 @@
   line-height: 1.2;
   position: absolute;
   bottom: 50px;
+  font-family: "Raleway", sans-serif;
 }
 
 .submit_error {
