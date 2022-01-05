@@ -2,39 +2,6 @@ import { Component } from "react";
 import styles from "./AttributesForm.module.css";
 
 class AttributesForm extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     active: [],
-  //   };
-  // this.toggleClass = this.toggleClass.bind(this);
-  // }
-
-  // toggleClass(attrName, option) {
-  //   const existingActive = this.state.active.find(
-  //     (item) => item.name === attrName
-  //   );
-
-  //   existingActive
-  //     ? this.state.active.map((item) => {
-  //         item.name === attrName
-  //           ? {
-  //               ...item,
-  //               value: option.value,
-  //             }
-  //           : item;
-  //       })
-  //     : this.setState({
-  //         active: [
-  //           ...this.state.active,
-  //           {
-  //             name: attrName,
-  //             value: option.value,
-  //           },
-  //         ],
-  //       });
-  // }
-
   render() {
     return (
       <form>
@@ -70,9 +37,12 @@ class AttributesForm extends Component {
                     }
                   />
                   <div
-                    className={`${styles.option}`}
+                    className={`${styles.option} ${
+                      attr.type === "swatch"
+                        ? styles.picked_swatch
+                        : styles.picked_text
+                    }`}
                     value={option.id}
-                    // onClick={() => this.toggleClass(attr.name, option)}
                     onKeyDown={this.handleKeyDown}
                     role="presentation"
                     style={{
@@ -87,16 +57,6 @@ class AttributesForm extends Component {
             </div>
           </div>
         ))}
-        {/* {!this.props.choseAllAttributes && (
-          <p className={`${styles.submit_text} ${styles.submit_error}`}>
-            *Please choose your options for all the attributes.
-          </p>
-        )}
-        {this.props.submitted && (
-          <p className={`${styles.submit_text} ${styles.submit_success}`}>
-            Item was added to your cart.
-          </p>
-        )} */}
       </form>
     );
   }

@@ -12,7 +12,9 @@ class Cart extends Component {
     };
   }
 
-  // Subtracting is in the component above because it was better to update the state there
+  // Subtracting is in the component above
+  // because it was better to update the state there.
+  // For consistency reasons adding is in above component, too.
 
   render() {
     const totalPrice = this.props.cartProducts.reduce(
@@ -28,7 +30,6 @@ class Cart extends Component {
       },
       0
     );
-    console.log(this.props);
     return (
       <div
         className={`${styles.container} ${

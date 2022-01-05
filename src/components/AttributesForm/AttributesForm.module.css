@@ -1,5 +1,6 @@
 .options_wrapper {
   display: flex;
+  align-items: center;
 }
 
 .attribute_name {
@@ -34,3 +35,11 @@
   position: relative;
 }
 
+input:checked + div.picked_text {
+  background-color: #1d1f22;
+  color: #ffffff;
+}
+
+input:checked + div.picked_swatch {
+  border: 2px solid #d6cdcd;
+}

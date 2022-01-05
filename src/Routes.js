@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Header from "./components/Header";
+import NotFound from "./components/NotFound";
 import { Route, Switch } from "react-router-dom";
 import ROUTES_CONFIG from "./config/routes";
 
@@ -114,7 +115,7 @@ class Routes extends Component {
             );
           })}
           <Route>
-            <h1>404</h1>
+            <NotFound />
           </Route>
         </Switch>
       </>

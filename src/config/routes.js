@@ -20,7 +20,7 @@ export default [
     page: ProductDescription,
   },
   {
-    path: ROUTES.CART,
+    path: ROUTES.PAGE_CART,
     exact: false,
     page: Cart,
   },
