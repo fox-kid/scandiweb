@@ -47,28 +47,27 @@ class Header extends Component {
             <ul className={styles.navigation}>
               {this.state.categories.map((category) => (
                 <li key={category.name}>
-                  <NavLink to={`/listing/${category.name}`}>
+                  <NavLink
+                    to={`/listing/${category.name}`}
+                    activeClassName={styles.active}
+                  >
                     {category.name}
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
-          <Link to="/listing/all">
+          <Link to="/listing/all" className={styles.header_logo}>
             <img src={logo} alt="logo" />
           </Link>
           <div className={styles.header_btns}>
             <div className={styles.currency_picker}>
               <select
                 onChange={(e) => this.props.changeCurrency(e.target.value)}
+                value={this.props.currency}
               >
                 {this.state.currencies.map((currency) => (
-                  <option
-                    key={currency.label}
-                    selected={currency.symbol === this.props.currency}
-                  >
-                    {currency.symbol}
-                  </option>
+                  <option key={currency.label}>{currency.symbol}</option>
                 ))}
               </select>
             </div>
@@ -76,6 +75,7 @@ class Header extends Component {
               className={styles.show_modal_btn}
               onClick={this.toggleModal}
             >
+              <span className={styles.cart_quantity}>{amount}</span>
               <img src={empty_cart} alt="cart" />
             </button>
           </div>

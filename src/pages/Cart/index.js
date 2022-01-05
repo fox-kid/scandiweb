@@ -45,7 +45,9 @@ class Cart extends Component {
           className={styles.cart_wrapper}
           style={{ marginTop: this.props.showModal ? "0px" : "160px" }}
         >
-          {!this.props.cartProducts.length ? <p>The cart is empty</p> : null}
+          {!this.props.cartProducts.length ? (
+            <p className={styles.cart_empty}>The cart is empty</p>
+          ) : null}
           {this.props.cartProducts.map((item, index) => (
             <div key={index} className={styles.cart_product}>
               <div className={styles.cart_product_left}>

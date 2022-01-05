@@ -19,6 +19,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.header_logo {
+  position: absolute;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navigation {
@@ -57,6 +65,14 @@ header {
   opacity: 1;
 }
 
+.navigation a.active {
+  color: #5ece7b;
+}
+
+.navigation a.active::after {
+  opacity: 1;
+}
+
 .currency_picker select {
   border: none;
   font-size: 18px;
@@ -78,6 +94,21 @@ header {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  position: relative;
+}
+
+.cart_quantity {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background-color: #1d1f22;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal_cart {

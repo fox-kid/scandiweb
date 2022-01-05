@@ -21,6 +21,10 @@
   margin-top: 60px;
 }
 
+.cart_empty {
+  margin: 10px 0;
+}
+
 .cart_product {
   position: relative;
   margin: 40px 0;
