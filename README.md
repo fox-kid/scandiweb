@@ -1,3 +1,8 @@
+You need to download and start this endpoint to make this application work:
+https://github.com/scandiweb/junior-react-endpoint
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
