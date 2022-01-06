@@ -47,6 +47,8 @@ class Routes extends Component {
           ],
         });
 
+    this.forceUpdate();
+
     localStorage.setItem(
       "cart",
       JSON.stringify(

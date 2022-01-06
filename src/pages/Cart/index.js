@@ -30,6 +30,7 @@ class Cart extends Component {
       },
       0
     );
+    console.log(totalPrice);
     return (
       <div
         className={`${styles.container} ${

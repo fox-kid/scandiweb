@@ -122,10 +122,17 @@ class ProductDescription extends Component {
                     Item was added to your cart.
                   </p>
                 )}
+                {!this.state.info.inStock && (
+                  <p className={`${styles.submit_text} ${styles.submit_error}`}>
+                    *Item is out of stock.
+                  </p>
+                )}
                 <button
                   className={styles.btn_primary}
                   type="submit"
-                  onClick={() => this.handleAddToCart(this.state)}
+                  onClick={() =>
+                    this.state.info.inStock && this.handleAddToCart(this.state)
+                  }
                 >
                   Add to cart
                 </button>
