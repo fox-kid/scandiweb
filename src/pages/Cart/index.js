@@ -63,7 +63,7 @@ class Cart extends Component {
                       .map((filteredPrice, index) => (
                         <div key={index} className={styles.price_amount}>
                           {filteredPrice.currency.symbol}
-                          {filteredPrice.amount}
+                          {+filteredPrice.amount.toFixed(2)}
                         </div>
                       ))}
                   </div>
@@ -114,7 +114,7 @@ class Cart extends Component {
             Total:
             <span className={styles.total_price_amount}>
               {this.props.currency}
-              {totalPrice}
+              {+totalPrice.toFixed(2)}
             </span>
           </div>
         )}

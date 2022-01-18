@@ -5,6 +5,12 @@
   width: 386px;
   margin: 20px;
   transition: all 0.2s;
+  text-decoration: none;
+  color: #1D1F22;
+}
+
+.product_card_box {
+  display: contents;
 }
 
 .product_img {
@@ -29,6 +35,7 @@
 
 .product_price {
   width: fit-content;
+  margin: 10px 0;
   font-weight: 500;
   font-size: 18px;
   font-family: "Raleway", sans-serif;
@@ -61,16 +68,12 @@
 .out_of_stock {
   color: #8d8f9a;
   opacity: 0.5;
-  cursor: not-allowed;
 }
 
-.product_card.out_of_stock:hover {
-  box-shadow: none;
-}
-
-.out_of_stock.product_card:hover .product_cart_btn {
+/* Idk if the cart button should show up when the producgt is out of stock so I'm gonna make it visible
+.out_of_stock.product_card:hover .product_cart_btn { 
   display: none;
-}
+} */ 
 
 .out_of_stock .product_img {
   position: relative;
@@ -85,4 +88,7 @@
   color: #404146;
   height: 100%;
   width: 100%;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
 }
