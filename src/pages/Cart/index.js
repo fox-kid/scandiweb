@@ -30,7 +30,6 @@ class Cart extends PureComponent {
       },
       0
     );
-    console.log(totalPrice);
     return (
       <div
         className={`${styles.container} ${
