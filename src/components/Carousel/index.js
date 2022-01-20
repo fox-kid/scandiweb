@@ -1,9 +1,9 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styles from "./Carousel.module.css";
 import left_arrow from "../../assets/images/left_arrow.png";
 import right_arrow from "../../assets/images/right_arrow.png";
 
-class Carousel extends Component {
+class Carousel extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

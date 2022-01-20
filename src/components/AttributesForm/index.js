@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styles from "./AttributesForm.module.css";
 
-class AttributesForm extends Component {
+class AttributesForm extends PureComponent {
   render() {
     return (
       <form>

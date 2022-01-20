@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import Routes from "./Routes";
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     return <Routes />;
   }

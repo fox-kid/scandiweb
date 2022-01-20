@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styles from "./ProductImages.module.css";
 
-class ProductImages extends Component {
+class ProductImages extends PureComponent {
   render() {
     return (
       <>

@@ -1,10 +1,10 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styles from "./Cart.module.css";
 import plus_square from "../../assets/images/plus_square.png";
 import minus_square from "../../assets/images/minus_square.png";
 import Carousel from "../../components/Carousel";
 
-class Cart extends Component {
+class Cart extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

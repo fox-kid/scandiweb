@@ -1,10 +1,10 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styles from "./ProductCard.module.css";
 import empty_cart_white from "../../assets/images/empty_cart_white.png";
 import { Link } from "react-router-dom";
 // Not rounding price on this page since it was not stated so in the task or your email,
 // probably because they're already rounded or just shouldn't be.
-class ProductCard extends Component {
+class ProductCard extends PureComponent {
   render() {
     return this.props.products.map((product) => (
       <Link

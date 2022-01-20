@@ -4,7 +4,7 @@ import styles from "./Modal.module.css";
 
 const modalRoot = document.getElementById("modal");
 
-class Modal extends React.Component {
+class Modal extends React.PureComponent {
   constructor(props) {
     super(props);
     this.element = document.createElement("div");

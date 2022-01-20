@@ -1,9 +1,9 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import ProductCard from "../../components/ProductCard";
 import { fetchProducts } from "../../api/products.js";
 import styles from "./ProductListing.module.css";
 
-class ProductListing extends Component {
+class ProductListing extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

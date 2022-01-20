@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styles from "./NotFound.module.css";
 
-class NotFound extends Component {
+class NotFound extends PureComponent {
   render() {
     return (
       <section className={styles.container}>

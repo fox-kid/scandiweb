@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import logo from "../../assets/images/logo.png";
@@ -8,7 +8,7 @@ import { fetchCategories, fetchCurrencies } from "../../api/products.js";
 import Modal from "../Modal";
 import Cart from "../../pages/Cart";
 
-class Header extends Component {
+class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

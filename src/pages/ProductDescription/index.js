@@ -1,10 +1,10 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import AttributesForm from "../../components/AttributesForm";
 import ProductImages from "../../components/ProductImages";
 import styles from "./ProductDescription.module.css";
 import { fetchProductInfo } from "../../api/products.js";
 
-class ProductDescription extends Component {
+class ProductDescription extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

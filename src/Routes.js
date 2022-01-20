@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import { Route, Switch } from "react-router-dom";
@@ -7,7 +7,7 @@ import ROUTES_CONFIG from "./config/routes";
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 const currencyFromLocalStorage = JSON.parse(localStorage.getItem("currency"));
 
-class Routes extends Component {
+class Routes extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
