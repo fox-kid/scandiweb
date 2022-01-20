@@ -31,15 +31,25 @@ class Routes extends PureComponent {
       (item) => item.id === product.id
     );
 
+    addedProduct &&
+      this.state.cartProducts.map((item) => {
+        item.id === product.id
+          ? {
+              ...item,
+              quantity: item.quantity++,
+            }
+          : item;
+      });
+
+    const updatedCart =
+      this.state.cartProducts.length &&
+      this.state.cartProducts.filter((item) => item.quantity > 0 && item);
+
     addedProduct
-      ? this.state.cartProducts.map((item) => {
-          item.id === product.id
-            ? {
-                ...item,
-                quantity: item.quantity++,
-              }
-            : item;
-        })
+      ? this.setState((prevState) => ({
+          ...prevState.cartProducts,
+          cartProducts: updatedCart,
+        }))
       : this.setState({
           cartProducts: [
             ...this.state.cartProducts,
@@ -47,7 +57,7 @@ class Routes extends PureComponent {
           ],
         });
 
-    this.forceUpdate();
+    // this.forceUpdate();
 
     localStorage.setItem(
       "cart",
@@ -66,25 +76,30 @@ class Routes extends PureComponent {
           }
         : item;
     });
-    this.forceUpdate(); // Needed because the quantity display wouldn't update
-  }
-
-  subtractQuantity(product) {
-    this.state.cartProducts.length &&
-      this.state.cartProducts.map((item) => {
-        item.id === product.id
-          ? {
-              ...item,
-              quantity: item.quantity--,
-            }
-          : item;
-      });
 
     const updatedCart =
       this.state.cartProducts.length &&
-      this.state.cartProducts.filter((item) =>
-        item.quantity > 0 ? item : null
-      );
+      this.state.cartProducts.filter((item) => item.quantity > 0 && item);
+
+    this.setState((prevState) => ({
+      ...prevState.cartProducts,
+      cartProducts: updatedCart,
+    }));
+  }
+
+  subtractQuantity(product) {
+    this.state.cartProducts.map((item) => {
+      item.id === product.id
+        ? {
+            ...item,
+            quantity: item.quantity--,
+          }
+        : item;
+    });
+
+    const updatedCart =
+      this.state.cartProducts.length &&
+      this.state.cartProducts.filter((item) => item.quantity > 0 && item);
 
     this.state.cartProducts.length &&
       this.setState((prevState) => ({
