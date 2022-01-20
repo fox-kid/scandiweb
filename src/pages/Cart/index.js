@@ -1,7 +1,7 @@
 import { Component } from "react";
 import styles from "./Cart.module.css";
-import plus_square from "../../assets/images/plus-square.png";
-import minus_square from "../../assets/images/minus-square.png";
+import plus_square from "../../assets/images/plus_square.png";
+import minus_square from "../../assets/images/minus_square.png";
 import Carousel from "../../components/Carousel";
 
 class Cart extends Component {
