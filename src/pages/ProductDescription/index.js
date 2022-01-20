@@ -1,8 +1,10 @@
 import { PureComponent } from "react";
+import parse from "html-react-parser";
+
+import { fetchProductInfo } from "../../api/products.js";
 import AttributesForm from "../../components/AttributesForm";
 import ProductImages from "../../components/ProductImages";
 import styles from "./ProductDescription.module.css";
-import { fetchProductInfo } from "../../api/products.js";
 
 class ProductDescription extends PureComponent {
   constructor(props) {
@@ -137,12 +139,9 @@ class ProductDescription extends PureComponent {
                   Add to cart
                 </button>
               </div>
-              <div
-                className={styles.product_description}
-                dangerouslySetInnerHTML={{
-                  __html: this.state.info.description,
-                }}
-              ></div>
+              <div className={styles.product_description}>
+                {parse(this.state.info.description)}
+              </div>
             </div>
           </div>
         )}
