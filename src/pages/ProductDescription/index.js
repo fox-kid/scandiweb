@@ -1,5 +1,4 @@
 import { PureComponent } from "react";
-import parse from "html-react-parser";
 
 import { fetchProductInfo } from "../../api/products.js";
 import AttributesForm from "../../components/AttributesForm";
@@ -70,6 +69,7 @@ class ProductDescription extends PureComponent {
   }
 
   render() {
+    const description = `${this.state.info.description}`;
     return (
       <section className={styles.container}>
         {this.state.loading && <p>Content is loading. Please wait</p>}
@@ -139,9 +139,7 @@ class ProductDescription extends PureComponent {
                   Add to cart
                 </button>
               </div>
-              <div className={styles.product_description}>
-                {parse(this.state.info.description)}
-              </div>
+              <div className={styles.product_description}>{description}</div>
             </div>
           </div>
         )}
