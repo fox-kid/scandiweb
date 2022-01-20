@@ -57,8 +57,6 @@ class Routes extends PureComponent {
           ],
         });
 
-    // this.forceUpdate();
-
     localStorage.setItem(
       "cart",
       JSON.stringify(
