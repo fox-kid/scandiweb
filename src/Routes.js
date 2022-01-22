@@ -6,6 +6,7 @@ import ROUTES_CONFIG from "./config/routes";
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 const currencyFromLocalStorage = JSON.parse(localStorage.getItem("currency"));
+const equal = require("deep-equal");
 
 class Routes extends PureComponent {
   constructor(props) {
@@ -27,13 +28,13 @@ class Routes extends PureComponent {
 
   addToCart(props) {
     const product = props.info;
-    const addedProduct = this.state.cartProducts.find(
-      (item) => item.id === product.id
-    );
+    const addedProduct = this.state.cartProducts
+      .filter((item) => item.id === product.id)
+      .find((added) => equal(added.attributes, props.attributes));
 
     addedProduct &&
       this.state.cartProducts.map((item) => {
-        item.id === product.id
+        item.id === product.id && equal(item.attributes, props.attributes)
           ? {
               ...item,
               quantity: item.quantity++,
@@ -67,7 +68,7 @@ class Routes extends PureComponent {
 
   addQuantity(product) {
     this.state.cartProducts.map((item) => {
-      item.id === product.id
+      item.id === product.id && equal(item.attributes, product.attributes)
         ? {
             ...item,
             quantity: item.quantity++,
@@ -87,7 +88,7 @@ class Routes extends PureComponent {
 
   subtractQuantity(product) {
     this.state.cartProducts.map((item) => {
-      item.id === product.id
+      item.id === product.id && equal(item.attributes, product.attributes)
         ? {
             ...item,
             quantity: item.quantity--,
